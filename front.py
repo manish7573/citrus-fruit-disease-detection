@@ -4,6 +4,7 @@ import numpy as np
 from streamlit_option_menu import option_menu
 from englisttohindi.englisttohindi import EngtoHindi
 
+st.set_page_config(page_title='Detect!t',page_icon="./letter-d.png")
 
 def model_prediction(test_image):
     model = tf.keras.models.load_model("trained_model2.h5",compile=False)
