@@ -3,11 +3,13 @@ import tensorflow as tf
 import numpy as np
 from streamlit_option_menu import option_menu
 from englisttohindi.englisttohindi import EngtoHindi
+import time
 
 st.set_page_config(page_title='Detect!t',page_icon="./letter-d.png")
 
+
 def model_prediction(test_image):
-    model = tf.keras.models.load_model("testing2.h5",compile=False)
+    model = tf.keras.models.load_model("trained_model2.h5",compile=False)
     image = tf.keras.preprocessing.image.load_img(test_image,target_size=(128,128))
     input_arr = tf.keras.preprocessing.image.img_to_array(image)
     input_arr = np.array([input_arr]) #convert single image to batch
@@ -127,10 +129,43 @@ This project aims to develop a citrus fruit detection system using deep learning
                 9. Citrus Canker Fruit
                 10. Healthy Fruit
 
-                Citrus fruit [click here](https://www.kaggle.com/datasets/jonathansilva2020/dataset-for-classification-of-citrus-diseases)
+                [Click here](https://www.kaggle.com/datasets/jonathansilva2020/dataset-for-classification-of-citrus-diseases) for Citrus fruit dataset
+                
+                [Click here](https://www.kaggle.com/datasets/myprojectdictionary/citrus-leaf-disease-image) for Citrus Leaf dataset
 
-                Citrus Leaf [click here](https://www.kaggle.com/datasets/myprojectdictionary/citrus-leaf-disease-image)
+                #### Team Members
                 """)
+    team_members_html = """
+    <div style="padding: 20px; background-color: #45A29E; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 20px;">
+        <h4 style="margin-top: 0;">Abhishek Singh</h4>
+        <p>🏫 College: Lokmanya Tilak College of Engineering</p>
+        <p>🎓 Degree: Bachelor of Engineering</p>
+        <p>🌳 Branch: Computer Engineering</p>
+    </div>
+
+    <div style="padding: 20px; background-color: #45A29E; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 20px;">
+        <h4 style="margin-top: 0;">Himanshu Singh</h4>
+        <p>🏫 College: Lokmanya Tilak College of Engineering</p>
+        <p>🎓 Degree: Bachelor of Engineering</p>
+        <p>🌳 Branch: Computer Engineering</p>
+    </div>
+
+    <div style="padding: 20px; background-color: #45A29E; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 20px;">
+        <h4 style="margin-top: 0;">Manish Gupta</h4>
+        <p>🏫 College: Lokmanya Tilak College of Engineering</p>
+        <p>🎓 Degree: Bachelor of Engineering</p>
+        <p>🌳 Branch: Computer Engineering</p>
+    </div>
+
+    <div style="padding: 20px; background-color: #45A29E; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 20px;">
+        <h4 style="margin-top: 0;">Om Singh</h4>
+        <p>🏫 College: Lokmanya Tilak College of Engineering</p>
+        <p>🎓 Degree: Bachelor of Engineering</p>
+        <p>🌳 Branch: Computer Engineering</p>
+    </div>
+    """
+
+    st.markdown(team_members_html, unsafe_allow_html=True)
     
 
 
@@ -138,71 +173,111 @@ This project aims to develop a citrus fruit detection system using deep learning
 elif(selected=="Features"):
     st.header("Features")
     st.subheader("Features about the Project 📝🔍")
-    st.markdown("""             
-    ### Just need to click and upload fruit image: 
-    This feature implies a user-friendly interface where users can simply click a button to upload an image of a citrus fruit for disease detection. This ease of use can encourage more users to utilize the system.
-                
-    ### Provides the cause and solution of the identified diseases: 
-    After identifying a disease in a citrus fruit, the system can provide information on the cause of the disease and possible solutions or treatments. This can help farmers take appropriate action to manage the disease and protect their crops.
-                    
-    ### Supports around different citrus fruit:
-    This feature indicates that the system is capable of detecting diseases in various types of citrus fruits. This versatility makes the system useful for a wide range of citrus fruit producers, regardless of the specific type of citrus fruit they are growing.
-    """)
+    feature_section_html = """
+    <style>
+    .feature {
+        padding: 20px;
+        background-color: #74C8C4;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .feature h3 {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .feature img {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 10px;
+        filter: invert(20%) sepia(100%) saturate(1500%) hue-rotate(180deg);
+    }
+    </style>
+
+    <div class="feature">
+        <img src="https://img.icons8.com/ios-filled/50/000000/upload--v1.png">
+        <h3 style="color: #0078ff;">Easy Detection</h3>
+        <p>Click the button below to upload an image of a citrus fruit for disease detection.</p>
+    </div>
+
+    <div class="feature">
+        <img src="https://img.icons8.com/ios-filled/50/000000/idea-sharing.png">
+        <h3 style="color: #ff6347;">Cause and Solution</h3>
+        <p>After identifying a disease in a citrus fruit, the system can provide information on the cause of the disease and possible solutions or treatments.</p>
+    </div>
+
+    <div class="feature">
+        <img src="https://img.icons8.com/ios-filled/50/000000/citrus.png">
+        <h3 style="color: #3cba54;">Support for Different Citrus Fruit</h3>
+        <p>This feature indicates that the system is capable of detecting diseases in various types of citrus fruits.</p>
+    </div>
+    """
+
+    st.markdown(feature_section_html, unsafe_allow_html=True)
     
 
 #Prediction
 elif(selected=="Disease Recognition"):
     st.header("Disease Recognition")
     st.subheader("Test Your Fruit:")
+    test_images = []
 
     option = st.selectbox('Choose an input Image option:',
                           ('--select option--','Upload', 'Camera'))
     
-    if(option=="Upload"):
-        test_image=st.file_uploader("Choose an Image:")
-        if(st.button("Show Image")):
-          st.image(test_image,width=4,use_column_width=True)
+    if option == "Upload":
+        test_images = st.file_uploader("Choose Image(s):", accept_multiple_files=True)
+        if(st.button("Show Images")):
+            st.image(test_images, width=4, use_column_width=True)
 
-    elif(option=="Camera"):
-        test_image=st.camera_input("Capture an Image:")
-        st.image(test_image,width=4,use_column_width=True)
+    elif option == "Camera":
+        test_images = [st.camera_input("Capture an Image:")]
+        if(st.button("Show Images")):
+            st.image(test_images, width=4, use_column_width=True)
 
-    predicted_class = None
-    if(st.button("Predict")):
-        st.write("Our Prediction")
-        result_index = model_prediction(test_image)
-        class_name=['Black spot-leaf',
-                    'Greening-fruit',
-                    'Melanose-leaf',
-                    'Scab-fruit',
-                    'black-spot-fruit',
-                    'canker-leaf',
-                    'citrus-canker-fruit',
-                    'greening-leaf',
-                    'healthy-fruit',
-                    'healthy-leaf']
-        predicted_class = class_name[result_index]
-        if(predicted_class=="healthy-fruit"):
-            st.success(f"Model is predicting it's a {predicted_class}")
-        else:
-            st.error(f"Model is predicting it's a {predicted_class}")
-        
-        co1, co2 = st.columns(2)
-        with co1:
-            st.write("Prevention Measures:")
-            prevention_measures = preventive_measures(predicted_class)
-            st.info(prevention_measures)
-        
 
-        with co2:
-            res1 = EngtoHindi("Prevention Measures:")
-            translated_measures = []
-            for line in prevention_measures.strip().split('\n'):
-                res = EngtoHindi(line.strip())
-                translated_measures.append(res.convert)
-            
-            my_string = '\n'.join(translated_measures)
+    if st.button("Predict"):
+        for i, test_image in enumerate(test_images):
+            st.write(f"Prediction for Image {i + 1}:")
+            st.image(test_image, width=4, use_column_width=True)
+            result_index = model_prediction(test_image)
+            class_name = [
+                "Black spot-leaf",
+                "Greening-fruit",
+                "Melanose-leaf",
+                "Scab-fruit",
+                "black-spot-fruit",
+                "canker-leaf",
+                "citrus-canker-fruit",
+                "greening-leaf",
+                "healthy-fruit",
+                "healthy-leaf",
+            ]
+            predicted_class = class_name[result_index]
 
-            # Display the translated header and measures
-            st.write(res1.convert)
-            st.info(my_string)
+            if predicted_class == "healthy-fruit":
+                st.success(f"Model is predicting it's a {predicted_class}")
+            else:
+                st.error(f"Model is predicting it's a {predicted_class}")
+
+            co1, co2 = st.columns(2)
+            with co1:
+                st.write("Prevention Measures:")
+                prevention_measures = preventive_measures(predicted_class)
+                st.info(prevention_measures)
+
+            with co2:
+                res1 = EngtoHindi("Prevention Measures:")
+                translated_measures = []
+                for line in prevention_measures.strip().split("\n"):
+                    res = EngtoHindi(line.strip())
+                    translated_measures.append(res.convert)
+
+                my_string = "\n".join(translated_measures)
+
+                # Display the translated header and measures
+                st.write(res1.convert)
+                st.info(my_string)
