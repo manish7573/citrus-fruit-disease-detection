@@ -165,8 +165,7 @@ elif(selected=="Disease Recognition"):
 
     elif(option=="Camera"):
         test_image=st.camera_input("Capture an Image:")
-        if(st.button("Show Image")):
-          st.image(test_image,width=4,use_column_width=True)
+        st.image(test_image,width=4,use_column_width=True)
 
     predicted_class = None
     if(st.button("Predict")):
