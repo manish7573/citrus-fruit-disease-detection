@@ -137,31 +137,10 @@ This project aims to develop a citrus fruit detection system using deep learning
                 """)
     team_members_html = """
     <div style="padding: 20px; background-color: #45A29E; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 20px;">
-        <h4 style="margin-top: 0;">Abhishek Singh</h4>
-        <p>🏫 College: Lokmanya Tilak College of Engineering</p>
-        <p>🎓 Degree: Bachelor of Engineering</p>
-        <p>🌳 Branch: Computer Engineering</p>
-    </div>
-
-    <div style="padding: 20px; background-color: #45A29E; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 20px;">
-        <h4 style="margin-top: 0;">Himanshu Singh</h4>
-        <p>🏫 College: Lokmanya Tilak College of Engineering</p>
-        <p>🎓 Degree: Bachelor of Engineering</p>
-        <p>🌳 Branch: Computer Engineering</p>
-    </div>
-
-    <div style="padding: 20px; background-color: #45A29E; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 20px;">
-        <h4 style="margin-top: 0;">Manish Gupta</h4>
-        <p>🏫 College: Lokmanya Tilak College of Engineering</p>
-        <p>🎓 Degree: Bachelor of Engineering</p>
-        <p>🌳 Branch: Computer Engineering</p>
-    </div>
-
-    <div style="padding: 20px; background-color: #45A29E; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 20px;">
-        <h4 style="margin-top: 0;">Om Singh</h4>
-        <p>🏫 College: Lokmanya Tilak College of Engineering</p>
-        <p>🎓 Degree: Bachelor of Engineering</p>
-        <p>🌳 Branch: Computer Engineering</p>
+        <h4 style="margin-top: 0;">Chanda Gupta</h4>
+        <p>🏫 College: Konark Ideal College</p>
+        <p>🎓 Degree: Bachelor</p>
+        <p>🌳 Branch: Information Technology</p>
     </div>
     """
 
